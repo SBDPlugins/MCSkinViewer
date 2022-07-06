@@ -1,11 +1,17 @@
+//Skin requirements
 const createCanvas = require('node-canvas-webgl').createCanvas;
 const canvas = createCanvas(200, 300);
-
 const skinview3d = require('./libs/skinview3d/skinview3d.bundle.js')
 
+//HTTP Server
+const https = require("https");
+const fs = require("fs");
+
+//Express request handler
 const express = require('express')
 const app = express()
 
+//General functions
 function degrees_to_radians(degrees) {
     if (degrees === 0) return 0;
     return degrees * (Math.PI / 180);
@@ -15,46 +21,57 @@ function undefinedDefault(param, def) {
     return typeof param !== 'undefined' ? param : def;
 }
 
+//Start webserver
+https.createServer({
+    key: fs.readFileSync("ssl/key.pem"),
+    cert: fs.readFileSync("ssl/cert.pem"),
+}, app).listen(25580, () => {
+    console.log("The webserver is online and ready for requests on :25580!");
+});
+
+//Endpoint
+
+/*
+OPTIONS:
+
+& name      =   Example     <- Description
+--------------------------------------------------
+
+# GENERAL
+
+& profile       =   SBDeveloper <- MC User name / UUID
+& aa            =   true        <- Enable anti aliasing?
+& size          =   100         <- The size of the image
+& rot           =   90          <- Rotation of the full image, in degrees.
+
+# HEAD ROTATION
+
+& headPitch     =   90          <- Pitch rotation (x angle)
+& headYaw       =   90          <- Yaw rotation (y angle)
+& headRoll      =   90          <- Roll rotation (z angle)
+
+# LEFT ARM ROTATION
+
+& leftArmPitch  =   90          <- Pitch rotation (x angle)
+& leftArmRoll   =   90          <- Roll rotation (z angle)
+
+# RIGHT ARM ROTATION
+
+& rightArmPitch =   90          <- Pitch rotation (x angle)
+& rightArmRoll  =   90          <- Roll rotation (z angle)
+
+# LEFT LEG ROTATION
+
+& leftLegPitch  =   90          <- Pitch rotation (x angle)
+& leftLegRoll   =   90          <- Roll rotation (z angle)
+
+# RIGHT LEG ROTATION
+
+& rightLegPitch =   90          <- Pitch rotation (x angle)
+& rightLegRoll  =   90          <- Roll rotation (z angle)
+ */
 app.get('/', async (req, res) => {
-    /*
-    OPTIONS:
-
-    & name      =   Example     <- Description
-    --------------------------------------------------
-
-    # GENERAL
-
-    & profile       =   SBDeveloper <- MC User name / UUID
-    & aa            =   true        <- Enable anti aliasing?
-    & size          =   100         <- The size of the image
-    & rot           =   90          <- Rotation of the full image, in degrees.
-
-    # HEAD ROTATION
-
-    & headPitch     =   90          <- Pitch rotation (x angle)
-    & headYaw       =   90          <- Yaw rotation (y angle)
-    & headRoll      =   90          <- Roll rotation (z angle)
-
-    # LEFT ARM ROTATION
-
-    & leftArmPitch  =   90          <- Pitch rotation (x angle)
-    & leftArmRoll   =   90          <- Roll rotation (z angle)
-
-    # RIGHT ARM ROTATION
-
-    & rightArmPitch =   90          <- Pitch rotation (x angle)
-    & rightArmRoll  =   90          <- Roll rotation (z angle)
-
-    # LEFT LEG ROTATION
-
-    & leftLegPitch  =   90          <- Pitch rotation (x angle)
-    & leftLegRoll   =   90          <- Roll rotation (z angle)
-
-    # RIGHT LEG ROTATION
-
-    & rightLegPitch =   90          <- Pitch rotation (x angle)
-    & rightLegRoll  =   90          <- Roll rotation (z angle)
-     */
+    console.log("Request on / from " + req.ip);
 
     const profile = undefinedDefault(req.query.profile, "Notch");
     const isAA = undefinedDefault(req.query.aa, true);
@@ -121,8 +138,4 @@ app.get('/', async (req, res) => {
     res.status(200);
     res.set('Content-Type', 'image/png');
     res.end(skinViewer.canvas.toBuffer('image/png'));
-});
-
-app.listen(8080, () => {
-    console.log("The webserver has been started on port :8080.");
 });
