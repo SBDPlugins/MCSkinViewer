@@ -1,0 +1,4 @@
+# User-specific stuff
+.idea/
+node_modules/
+package-lock.json
