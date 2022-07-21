@@ -30,62 +30,7 @@ https.createServer({
 //Endpoint
 
 /*
-OPTIONS:
 
-& name      =   Example     <- Description
---------------------------------------------------
-
-# GENERAL
-
-& profile       =   SBDeveloper <- MC User name / UUID
-& size          =   100         <- The size of the image
-& rot           =   90          <- Rotation of the full image, in degrees.
-& fov           =   50          <- The field of view
-
-# LIGHT
-& glight        =   100         <- The global light on the skin
-& clight        =   100         <- The light of the camera
-
-# HEAD ROTATION
-
-& headPitch     =   90          <- Pitch rotation (x angle)
-& headYaw       =   90          <- Yaw rotation (y angle)
-& headRoll      =   90          <- Roll rotation (z angle)
-
-# LEFT ARM ROTATION
-
-& leftArmPitch  =   90          <- Pitch rotation (x angle)
-& leftArmRoll   =   90          <- Roll rotation (z angle)
-
-# RIGHT ARM ROTATION
-
-& rightArmPitch =   90          <- Pitch rotation (x angle)
-& rightArmRoll  =   90          <- Roll rotation (z angle)
-
-# LEFT LEG ROTATION
-
-& leftLegPitch  =   90          <- Pitch rotation (x angle)
-& leftLegRoll   =   90          <- Roll rotation (z angle)
-
-# RIGHT LEG ROTATION
-
-& rightLegPitch =   90          <- Pitch rotation (x angle)
-& rightLegRoll  =   90          <- Roll rotation (z angle)
-
-# LAYER VISBIBLITY
-
-& headInner     =   1           <- Visiblity of the inner head
-& headOuter     =   1           <- Visiblity of the outer head
-& bodyInner     =   1           <- Visiblity of the inner body
-& bodyOuter     =   1           <- Visiblity of the outer body
-& leftArmInner  =   1           <- Visiblity of the inner left arm
-& leftArmOuter  =   1           <- Visiblity of the outer left arm
-& rightArmInner =   1           <- Visiblity of the inner right arm
-& rightArmOuter =   1           <- Visiblity of the outer right arm
-& leftLegInner  =   1           <- Visiblity of the inner left leg
-& leftLegOuter  =   1           <- Visiblity of the outer left leg
-& rightLegInner =   1           <- Visiblity of the inner right leg
-& rightLegOuter =   1           <- Visiblity of the outer right leg
  */
 app.get('/', async (req, res) => {
     console.log("Request on / from " + (req.headers['x-forwarded-for'] || req.socket.remoteAddress));
