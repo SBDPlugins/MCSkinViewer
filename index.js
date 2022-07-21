@@ -1,15 +1,10 @@
-//Skin Requirements
 const skinview3d = require('./libs/skinview3d/skinview3d.bundle.js')
-
-//HTTP Server
 const https = require("https")
 const fs = require("fs")
-
-//Express request handler
 const express = require('express')
-const app = express()
 
-//General functions
+//////////////////
+
 function degrees_to_radians(degrees) {
     if (degrees === 0) return 0;
     return degrees * (Math.PI / 180);
@@ -19,7 +14,10 @@ function undefined_default(param, def) {
     return typeof param !== 'undefined' ? param : def;
 }
 
-//Start webserver
+//////////////////
+
+const app = express()
+
 https.createServer({
     key: fs.readFileSync("ssl/key.pem"),
     cert: fs.readFileSync("ssl/cert.pem"),
@@ -27,11 +25,6 @@ https.createServer({
     console.log("The webserver is online and ready for requests on :25580!");
 });
 
-//Endpoint
-
-/*
-
- */
 app.get('/', async (req, res) => {
     console.log("Request on / from " + (req.headers['x-forwarded-for'] || req.socket.remoteAddress));
 
