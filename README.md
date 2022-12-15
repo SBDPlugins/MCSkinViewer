@@ -5,10 +5,16 @@ Generates a PNG skin image, based on properties given in the URL parameters.
 Copyright &copy; 2022 - SBDevelopment\
 Please also see copyright notices of the libraries used (`/libs/.../LICENSE`).
 
+## Demo:
+
+A demo is available at [skins.sbdevelopment.tech](https://skins.sbdevelopment.tech/).
+
+For example: `https://skins.sbdevelopment.tech/?profile=5e4723d7-3ea1-4fe5-a748-3cb53c35d96b&headPitch=25&rot=330&aa=false`
+![image](https://skins.sbdevelopment.tech/?profile=5e4723d7-3ea1-4fe5-a748-3cb53c35d96b&headPitch=25&rot=330&aa=false)
+
 ## Usage:
 
 The default (/) endpoint supports the following options:
-
 ```md
 & name          =   Example     <- Description
 --------------------------------------------------
