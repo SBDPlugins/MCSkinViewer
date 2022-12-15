@@ -68,8 +68,6 @@ app.get('/', async (req, res) => {
 
     const skinViewer = new skinview3d.SkinViewer({renderPaused: true});
 
-    // skinViewer.render(); //TODO Check if this is required ...
-
     await skinViewer.loadSkin("https://minotar.net/skin/" + profile);
 
     skinViewer.zoom = size;
@@ -111,7 +109,7 @@ app.get('/', async (req, res) => {
 
     skin.rotation.y = rotation;
 
-    skinViewer.render(); //TODO ... or if it works fine here?
+    skinViewer.render();
 
     res.status(200);
     res.set('Content-Type', 'image/png');
