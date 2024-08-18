@@ -1,5 +1,5 @@
 # User-specific stuff
 .idea/
 node_modules/
-ssl/
+ssl/*.pem
 package-lock.json

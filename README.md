@@ -2,7 +2,7 @@
 
 Generates a PNG skin image, based on properties given in the URL parameters.
 
-Copyright &copy; 2022 - SBDevelopment\
+Copyright &copy; 2024 - SBDevelopment\
 Please also see copyright notices of the libraries used (`/libs/.../LICENSE`).
 
 ## Demo:
